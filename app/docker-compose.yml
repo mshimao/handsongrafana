@@ -1,0 +1,85 @@
+version: "2"
+services:
+   # Collector
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.87.0
+    command: ["--config=/etc/otel-collector-config.yaml", ""]
+    volumes:
+      - ./collector.yaml:/etc/otel-collector-config.yaml     
+      - ./log:/log/otel     
+    ports:
+      - "4317:4317"   # OTLP gRPC receiver
+      - "4318:4318"   # OTLP Http receiver
+      - "8889:8889"   # Prometheus metrics exporter (scrape endpoint)
+      - "13133:13133" # health_check extension
+      - "55679:55679" # ZPages extension
+    depends_on:
+      - tempo
+      - prometheus
+      - loki
+
+  genexusapp:
+    image: mkshimao/opentelemetryjavasqlserver:latest
+          
+    environment:
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317
+      - OTEL_RESOURCE_ATTRIBUTES=service.namespace=Handson,service.name=AppJava,service.version=1.0.0
+      - OTEL_METRICS_EXPORTER=otlp   
+      - OTEL_LOGS_EXPORTER=otlp
+      - GX_LOG_LEVEL=debug
+      - GX_LOG_LEVEL_USER=debug
+      - GX_LOG_OUTPUT=ConsoleAppender
+      - GX_DEFAULT_DB_URL=jdbc:sqlserver://sqlserver:1433;databaseName=testejava;encrypt=true;trustServerCertificate=true;
+      - GX_DEFAULT_USER_ID=sa
+      - GX_DEFAULT_USER_PASSWORD=Aglsolutions!2023 
+
+    ports:
+      - "8888:8080"
+
+  sqlserver:
+    image: mkshimao/handsoncollectorotlpsql
+    ports:
+      - "1433:1433"
+      
+  loki:
+    image: grafana/loki:2.7.4
+    volumes:
+      - ./loki-data:/tmp/loki
+      - ./loki-config.yaml:/etc/loki/loki-config.yaml
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/loki-config.yaml
+
+  prometheus:
+    image: prom/prometheus:v2.42.0
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus-data:/prometheus
+    ports:
+      - "9090:9090"
+
+  tempo:
+    image: grafana/tempo:latest
+    command: [ "-config.file=/etc/tempo.yaml" ]
+    volumes:
+      - ./tempo.yaml:/etc/tempo.yaml
+      - ./tempo-data:/tmp/tempo
+    ports:
+      - "14268"  # jaeger ingest
+      - "3200"   # tempo
+      - "4317"  # otlp grpc
+      - "4318"  # otlp http
+      - "9411"   # zipkin
+
+  grafana:
+    image: grafana/grafana:9.4.3
+    volumes:
+      - ./grafana-data:/var/lib/grafana
+    environment:
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: "Admin"
+    ports:
+      - "3000:3000" 
+    depends_on:
+      - otel-collector
+      
