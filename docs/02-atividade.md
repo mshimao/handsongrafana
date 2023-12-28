@@ -53,6 +53,8 @@ Como o Grafana está configurado com a acesso anônimo no docker compose, não s
 
 #### Passo 4
 
+- [Documentação de como configurar o data source para o Loki](https://grafana.com/docs/grafana/latest/datasources/loki/configure-loki-data-source/)
+
 Agora vamos configurar o data source do Loki para podermos visualizar os logs dentro do Grafana.
 
 Para configurar o data source do Loki, clicar na opção "Configuration" do menu lateral.
@@ -91,6 +93,8 @@ Serão apresentados os registros do log armazenados no Loki.
 
 #### Passo 5
 
+- [Documentação de como configurar o data source para o Prometheus](https://grafana.com/docs/grafana/latest/datasources/prometheus/configure-prometheus-data-source/)
+
 Agora iremos configurar o data source para o Prometheus, para isso acessar novamente a opção "Configuration" do menu lateral, e clicar no botão "Add new data source".
 
 ![grafana add new data source](images/grafanaaddnewdatasource.png)
@@ -121,6 +125,8 @@ Será apresentado um gráfico com o valor da métrica.
 
 #### Passo 6
 
+- [Documentação de como configurar o data source para o Tempo](https://grafana.com/docs/grafana/latest/datasources/tempo/configure-tempo-data-source/)
+
 Agora iremos configurar o data source para o Tempo, para isso acessar novamente a opção "Configuration" do menu lateral, e clicar no botão "Add new data source".
 
 ![grafana add new data source](images/grafanaaddnewdatasource.png)
@@ -149,25 +155,14 @@ Após salvar o data source vamos explorar os traces, para isso, clicar no botão
 
 ![prometheus data source explore](images/prometheusdatasourceexplore.png)
 
-Selecionar a métrica "process_runtime_jvm_cpu_utilization_ratio", o item "exported_job" no campo "label" e o valor "Handson/AppJava", e clicar em "Run Query".
+Clicar na aba "Search", campo Service Name selecionar o valor "AppJava" e clicar em "Run Query".
 
-![prometheus label filter](images/prometheusexplorelabelfilter.png)
+![tempo label filter](images/tempoexplorerfilter.png)
 
-Será apresentado um gráfico com o valor da métrica.
+Será apresentado uma lista de traces.
 
-![prometheus query result](images/prometheusqueryresult.png)
+![trace query result](images/tempoqueryresult.png)
 
-#### Passo 7
-
-Explorar o log.
-
-#### Passo 8
-
-Explorar os traces.
-
-#### Passo 9
-
-Explorar as métricas.
 
 Próxima atividade: [Atividade 03](03-atividade.md)
 
