@@ -57,22 +57,20 @@ service:
         - otlp
       processors: [batch]
       exporters:
-        - debug 
         - file/metrics
         - prometheus
     traces:
       receivers: [ otlp]
-      exporters: [ otlp]
+      exporters: 
+        - debug
+        - file/traces
+        - otlp        
     logs:
       receivers: [ otlp]
       processors: [resource]      
       exporters:
-        - debug 
         - file/logs
         - loki
-  telemetry:
-    logs:
-      level: debug
   extensions:
     - health_check
     - zpages

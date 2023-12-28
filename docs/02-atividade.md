@@ -91,12 +91,71 @@ Serão apresentados os registros do log armazenados no Loki.
 
 #### Passo 5
 
-Logar criar o datasource do Prometheus
+Agora iremos configurar o data source para o Prometheus, para isso acessar novamente a opção "Configuration" do menu lateral, e clicar no botão "Add new data source".
 
+![grafana add new data source](images/grafanaaddnewdatasource.png)
+
+Selecionar o item "Prometheus" na lista de opções.
+
+![prometheus option](images/prometheusoption.png)
+
+Informar a url do Prometheus no campo URL, o valor a ser digitado no campo é "http://prometheus:9090".
+
+![prometheus data source config](images/prometheusdatasourceconfig.png)
+
+Para salvar o data source, clicar no botão "Save & test" no rodapé da página.
+
+![loki data source](images/lokidatasourcesave.png)
+
+Após salvar o data source vamos explorar as métricas, para isso, clicar no botão "Explore".
+
+![prometheus data source explore](images/prometheusdatasourceexplore.png)
+
+Selecionar a métrica "process_runtime_jvm_cpu_utilization_ratio", o item "exported_job" no campo "label" e o valor "Handson/AppJava", e clicar em "Run Query".
+
+![prometheus label filter](images/prometheusexplorelabelfilter.png)
+
+Será apresentado um gráfico com o valor da métrica.
+
+![prometheus query result](images/prometheusqueryresult.png)
 
 #### Passo 6
 
-Logar criar o datasource do Tempo
+Agora iremos configurar o data source para o Tempo, para isso acessar novamente a opção "Configuration" do menu lateral, e clicar no botão "Add new data source".
+
+![grafana add new data source](images/grafanaaddnewdatasource.png)
+
+Selecionar o item "Tempo" na lista de opções.
+
+![tempo option](images/tempooption.png)
+
+Informar a url do Tempo no campo URL, o valor a ser digitado no campo é "http://tempo:3200".
+
+![tempo data source config](images/tempodatasourceconfig.png)
+
+Na seção "Trace to logs", no campo "Data Source" selecionar a opção "Loki", essa configuração permite a navegação do Trace para o Log.
+
+![tempo data source config 2](images/tempodatasourceconfig2.png)
+
+Na seção "Service Graph", no campo "Data Source" selecionar a opção "Prometheus", essa configuração permite a visualização de métricas no grafico de nós.
+
+![tempo data source config 3](images/tempodatasourceconfig3.png)
+
+Para salvar o data source, clicar no botão "Save & test" no rodapé da página.
+
+![loki data source](images/lokidatasourcesave.png)
+
+Após salvar o data source vamos explorar os traces, para isso, clicar no botão "Explore".
+
+![prometheus data source explore](images/prometheusdatasourceexplore.png)
+
+Selecionar a métrica "process_runtime_jvm_cpu_utilization_ratio", o item "exported_job" no campo "label" e o valor "Handson/AppJava", e clicar em "Run Query".
+
+![prometheus label filter](images/prometheusexplorelabelfilter.png)
+
+Será apresentado um gráfico com o valor da métrica.
+
+![prometheus query result](images/prometheusqueryresult.png)
 
 #### Passo 7
 
