@@ -44,8 +44,8 @@ exporters:
     tls:
       insecure: true
 
-  prometheus:
-    endpoint: "0.0.0.0:8889"
+  prometheusremotewrite:
+    endpoint: "http://prometheus:9090/api/v1/write"
     
   debug:
     verbosity: detailed
@@ -58,7 +58,7 @@ service:
       processors: [batch]
       exporters:
         - file/metrics
-        - prometheus
+        - prometheusremotewrite
     traces:
       receivers: [ otlp]
       exporters: 
