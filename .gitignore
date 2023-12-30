@@ -3,3 +3,4 @@ app/prometheus-data/
 app/tempo-data/
 app/loki-data/
 app/grafana-data/
+prometheus/data-agent/

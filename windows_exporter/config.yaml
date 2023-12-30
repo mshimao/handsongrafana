@@ -1,0 +1,12 @@
+# Configuration and more info
+# https://github.com/prometheus-community/windows_exporter
+
+collectors:
+  enabled: cpu,cs,logical_disk,net,os,service,system,textfile,process
+collector:
+  textfile:
+    directory: C:\temp\metrics\
+#  service:
+#    services-where: "Name='windows_exporter'"
+log:
+  level: warn

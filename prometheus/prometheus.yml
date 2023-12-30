@@ -1,0 +1,19 @@
+global:
+  scrape_interval: 10s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+
+remote_write:
+    - url: "http://localhost:9091/api/v1/write"
+
+scrape_configs:
+  - job_name: "windows_exporter"
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+      - targets: ["localhost:9182"]
+    metric_relabel_configs:
+      - source_labels: [instance]
+        target_label: instance
+        regex: '(.*)'
+        replacement: 'windows-demo'

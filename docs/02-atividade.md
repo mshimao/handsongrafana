@@ -6,7 +6,7 @@ O coletor já está configurado para receber as métricas, logs e traces da apli
 Será utilizado o docker compose para executar os componentes da solução.
 
 #### Passo 1
-Abrir um linha de comando e ir até a pasta app, e executar o comando docker
+Abrir um prompt de linha de comando e ir até a pasta app, e executar o comando docker
 
 ```bash
 docker-compose up -d
