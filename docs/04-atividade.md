@@ -4,6 +4,8 @@
 
 Criar um componente para mostrar o log no dashboard.
 
+https://grafana.com/blog/2023/05/18/6-easy-ways-to-improve-your-log-dashboards-with-grafana-and-grafana-loki/
+
 #### Passo 1
 
 
