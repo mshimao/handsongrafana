@@ -37,6 +37,23 @@ Se o request não funcionar, existe a possibilidade de verificar no Docker Deskt
 
 #### Passo 3
 
+Vamos gerar solicitações na aplicação para gerar informações de log e traces.
+
+Para isso vamos usar a ferramenta k6, que é uma ferramenta de teste de desempenho de código aberto moderna, que permite testar a carga de trabalho em um servidor, serviço ou site. É usado para simular o tráfego para um destino específico e monitorar o desempenho e a resposta sob diferentes cargas de trabalho.
+
+- [Documentação do k6](https://k6.io/docs/)
+
+Abra um prompt de linha de comando e ir até a pasta k6, e executar o comando abaixo.
+
+```bash
+k6 run script.js 
+```
+
+![k6 execution](images/k6execution.png)
+
+
+#### Passo 4
+
 Agora iremos acessar o Grafana e realizar a configuração dos data sources para o Loki, Prometheus e Tempo.
 
 Clicar no link abaixo para acessar o Grafana:
