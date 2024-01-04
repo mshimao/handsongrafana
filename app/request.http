@@ -1,3 +1,15 @@
  ## List all the clients
 GET http://localhost:8888/Core/ClientAPI/List
 Accept: application/json
+
+
+### Insert
+POST http://localhost:8888/Core/ClientAPI/Insert
+Accept: application/json
+Content-Type: application/json
+ 
+{
+  "ClientId": 2,  
+  "ClientName": "Teste gx",
+  "ClientAddress": "ADdfadfadf"
+}
