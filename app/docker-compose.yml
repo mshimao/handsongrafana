@@ -20,8 +20,8 @@ services:
       - OTEL_RESOURCE_ATTRIBUTES=service.namespace=Handson,service.name=AppJava,service.version=1.0.0
       - OTEL_METRICS_EXPORTER=otlp   
       - OTEL_LOGS_EXPORTER=otlp
-      - GX_LOG_LEVEL=debug
-      - GX_LOG_LEVEL_USER=debug
+      - GX_LOG_LEVEL=all
+      - GX_LOG_LEVEL_USER=all
       - GX_LOG_OUTPUT=ConsoleAppender
       - GX_DEFAULT_DB_URL=jdbc:sqlserver://sqlserver:1433;databaseName=testejava;encrypt=true;trustServerCertificate=true;
       - GX_DEFAULT_USER_ID=sa
@@ -29,6 +29,8 @@ services:
 
     ports:
       - "8888:8080"
+    volumes:
+      - tomcat-log:/usr/local/tomcat/logs 
 
   sqlserver:
     image: mkshimao/handsoncollectorotlpsql
@@ -43,6 +45,13 @@ services:
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/loki-config.yaml
+
+  promtail:
+    image: grafana/promtail:2.7.4
+    volumes:
+      - ./promtail-config.yaml:/etc/promtail/promtail-config.yaml
+      - tomcat-log:/tomcatlog
+    command: -config.file=/etc/promtail/promtail-config.yaml
 
   prometheus:
     image: prom/prometheus:v2.42.0
@@ -76,4 +85,5 @@ services:
       - "3000:3000" 
     depends_on:
       - otel-collector
-      
+volumes:
+  tomcat-log:  

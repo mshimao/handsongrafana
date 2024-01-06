@@ -62,13 +62,13 @@ service:
     traces:
       receivers: [ otlp]
       exporters: 
-        - debug
         - file/traces
         - otlp        
     logs:
       receivers: [ otlp]
       processors: [resource]      
       exporters:
+        - debug
         - file/logs
         - loki
   extensions:
