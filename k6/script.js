@@ -23,4 +23,7 @@ export default function () {
   };
   const resp = http.post(`http://localhost:8888/Core/ClientAPI/Insert`, payload, params); 
   console.log(resp.body);
+  const id2 = randomIntBetween(2, 1000);
+  const resp2 = http.get(`http://localhost:8888/Core/ClientAPI/GetByKey?Clientid=${id2}`);
+  console.log(resp2.body);
 }
