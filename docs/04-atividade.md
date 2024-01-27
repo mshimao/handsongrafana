@@ -2,16 +2,77 @@
 
 ### Display do log
 
-Criar um componente para mostrar o log no dashboard.
-
-https://grafana.com/blog/2023/05/18/6-easy-ways-to-improve-your-log-dashboards-with-grafana-and-grafana-loki/
+Vamos adicionar um novo painel no dashboard para mostramos o log da aplicação.
 
 #### Passo 1
 
+Adicione um novo painel clicando em "Add Panel"
+
+![add new panel](images/grafanaaddpanel.png)
+
+#### Passo 2
+
+Clique na opção "Add a new panel".
+
+![add new panel](images/grafanaaddpanel2.png)
+
+#### Passo 3
+
+Clique no combo da lista de tipos de painel e selecione o tipo "Logs".
+
+![select panel type](images/grafanaselectpaneltype.png)
+
+![select panel log](images/grafanaselectpanellog.png)
+
+#### Passo 4
+
+Edite o título do painel para "Log da aplicação".
+
+![panel log title](images/panellogtitle.png)
+
+#### Passo 5
+
+Configurar o datasource do painel, selecionando o datasource Loki que foi configurado anteriormente.
+
+Configurar o label filters com as opções "job" e "Handson/AppJava".
+
+Clicar em "Run queries" para verificar se os registros do log são carregados no painel.
+
+![panel log datasource](images/panellogdatasource.png)
+
+#### Passo 6
+
+Clicar em "Save" para salvar o painel.
+
+![panel log save](images/panellogsave.png)
+
+Preencher o campo de detalhes com o texto "Painel de log" e clicar em "Save".
+
+![panel log save details](images/panellogsavedetails.png)
+
+#### Passo 7
+
+Clicar em "Apply" para retornar para a visualização do Dashboard.
+
+![panel log apply](images/panellogapply.png)
+
+Reposicione o painel de log, para isso clique na barra superior do painel e mantenha o mouse clicado e arraste o painel para abaixo do painel do título.
+
+![panel log move](images/panellogmove.png)
+
+Aumente o tamanho do painel de log, clicando no canto inferior direito e arrastando a ponta, até que o componente ocupe a largura da tela.
+
+![panel log size](images/panellogsize.png)
 
 ### LogQL
 
-Utilizar o LogQL para pesquisar erros.
+O LogQL é uma linguagem de consulta projetada especificamente para interagir com o Loki. Desenvolvido como parte do projeto Loki, o LogQL permite que os usuários pesquisem, filtrem e explorem os logs armazenados no Loki de maneira eficiente.
+
+Vamos utilizar o LogQL mostrar apenas os erros no painel de log.
+
+#### Passo 8
+
+
 
 https://grafana.com/docs/grafana-cloud/monitor-applications/frontend-observability/using-errors-overview/
 
