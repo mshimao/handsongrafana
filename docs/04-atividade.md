@@ -71,9 +71,45 @@ O LogQL é uma linguagem de consulta projetada especificamente para interagir co
 Vamos utilizar o LogQL mostrar apenas os erros no painel de log.
 
 #### Passo 8
+Vamos parar o container do banco de dados e com isso teremos um erro na aplicação Java, e vamos ver como o erro é apresentado no Grafana.
 
+Para parar o container do banco de dados vamos usar o Docker Desktop, na opção "Containers", clicar no ícone de Stop da imagem "sqlserver-1"
 
+![stopsqlserver](images/stopsqlserver.png)
 
-https://grafana.com/docs/grafana-cloud/monitor-applications/frontend-observability/using-errors-overview/
+#### Passo 9
+Vamos executar o request e ver o erro. A resposta deverá trazer uma mensagem de erro como na imagem.
+
+![responseerror](images/requesthttpresponseerror.png)
+
+#### Passo 10
+Editar o painel de log.
+
+![editlogpanel](images/panellogedit.png)
+
+#### Passo 11
+Clicar no botão "Code" para editar a query.
+
+![logpanelcode](images/panellogcode.png)
+
+#### Passo 12
+Editar a query adicionando a condição para filtrar o texto "ERROR":
+
+```code
+{job="Handson/AppJava"} |= `ERROR` 
+```
+
+ e clicar em "Run Queries".
+
+![logpaneleditquery](images/panellogeditquery.png)
+
+#### Passo 13
+
+Clicar em "Save" para salvar o painel.
+
+![logpanelquerysave](images/panellogsavequery.png)
+
+![logpanelfinish](images/painellogfinish.png)
+
 
 Próxima atividade: [Atividade 05](05-atividade.md)
